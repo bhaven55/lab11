@@ -14,6 +14,7 @@ import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -271,47 +272,42 @@ public class GraphicalCalculatorFrame extends JFrame
 					if(Integer.parseInt(content)<=9 && Integer.parseInt(content)>=0)
 					{
 					operands[0] = Integer.parseInt(content);
-					}
 					success = true;
+					}
 					break;
 				case 1:
 					if(content.equals("+") || content.equals("-") || content.equals("*"))
 					{
 					operators[0] = content;
-					}
 					success = true;
+					}
 					break;
 				case 2:
 					if(Integer.parseInt(content)<=9 && Integer.parseInt(content)>=0)
 					{
 					operands[1] = Integer.parseInt(content);
-					}
 					success = true;
+					}
 					break;
 				case 3:
 					if(content.equals("+") || content.equals("-") || content.equals("*"))
 					{
 					operators[1] = content;
-					}
 					success = true;
+					}
 					break;
 				case 4:
 					if(Integer.parseInt(content)<=9 && Integer.parseInt(content)>=0)
 					{
 					operands[2] = Integer.parseInt(content);
-					}
 					success = true;
+					}
 					break;
 				}
 			}
 			catch(NumberFormatException num)
 			{
 				num.printStackTrace();
-			}
-			
-			if(!content.equals("+") && !content.equals("-") && !content.equals("*") && !(Integer.parseInt(content)<=9) && !(Integer.parseInt(content)>=0))
-			{
-				success = false;
 			}
 			
 			this.repaint();
@@ -474,8 +470,8 @@ public class GraphicalCalculatorFrame extends JFrame
 
         // TODO: add sub-panels into panel 0
         panel0.add(panel1);
-        panel0.add(panel2);
         panel0.add(panel3);
+        panel0.add(panel2);
         panel0.add(panel4);
         
         // Adds all panels to frame:
@@ -503,6 +499,8 @@ public class GraphicalCalculatorFrame extends JFrame
         	}
         	
         	}
+        	
+        	
         );
 
         /*
@@ -517,28 +515,21 @@ public class GraphicalCalculatorFrame extends JFrame
          */
         setOperator.addActionListener((e) -> {
     		// TODO: attempt to modify the selected region in gcPanel with the new operator value.
-        	Enumeration<AbstractButton> selectedButton = ops.getElements();
-        	selectedButton.nextElement().setMnemonic(1);
-        	selectedButton.nextElement().setMnemonic(2);
-        	selectedButton.nextElement().setMnemonic(3);
-        	if(ops.getSelection().getMnemonic() == 1)
+        	if(add.isSelected())
         	{
         		gcPanel.setSelectedRegionContents("+");
-        		errorMessage.setText("");
         	}
-        	else if (ops.getSelection().getMnemonic() == 2)
+        	else if(subtract.isSelected())
         	{
         		gcPanel.setSelectedRegionContents("-");
-        		errorMessage.setText("");
         	}
-        	else if (ops.getSelection().getMnemonic() == 3)
+        	else if(multiply.isSelected())
         	{
         		gcPanel.setSelectedRegionContents("*");
-        		errorMessage.setText("");
         	}
         	else
         	{
-        		errorMessage.setText("Failed to set operator value");
+        		errorMessage.setText("Failed to set operand value");
         	}
         });
 
